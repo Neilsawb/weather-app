@@ -1,8 +1,38 @@
 import React, { Component} from 'react';
 import './App.css';
 import Weatherparameter from './weatherparameter';
+let previousTemp = null;
+
+function sendDataToThingsBoard(temperature) {
+  
+  // set up POST data to send to thingsboard. as per curl example from thingsboard.
+  var url = 'http://70.34.199.188:31131/api/v1/Wlpc95hHKNE0TWOl6Wxq/telemetry' // --header "Content-Type:application/json'
+  var data = {"smhiTemperature":temperature};
+  
+  
+  fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      redirect: 'follow'
+    }) 
+    .then(response => {
+      if (response.status === 200) {
+        console.log(response.text());
+    } else {
+     throw new Error('Something went wrong on api server!');
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+  previousTemp = temperature; // update previous temp with new temp.
+}
 
 class App extends Component {
+  
   state = {
     temp: null,
     windspeed: null,
@@ -15,13 +45,23 @@ class App extends Component {
     .then(data => {
       console.log(data);
       const currentWeather = data.timeSeries[0].parameters;
+      console.log("this temp");
+      console.log(currentWeather[4].values[0]);
+      console.log("previous temp:");
+      console.log(previousTemp);
+      if (currentWeather[10].values[0] !== previousTemp) {
+        console.log("calling sendDataToThingsBoard !");
+        sendDataToThingsBoard(currentWeather[10].values[0]);
+    }
       this.setState({
         temp: currentWeather[10].values[0],
-        windspeed: currentWeather[14].values[0],
+        windspeed: currentWeather[4].values[0],
         rainfall: currentWeather[3].values[0]
       });
     });
   }
+
+  
   
   render() {
     const { temp, windspeed, rainfall} = this.state;
