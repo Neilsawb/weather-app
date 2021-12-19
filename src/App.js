@@ -6,9 +6,9 @@ let previousTemp = null;
 function sendDataToThingsBoard(temperature) {
   
   // set up POST data to send to thingsboard. as per curl example from thingsboard.
-  var url = 'http://70.34.199.188:31131/api/v1/Wlpc95hHKNE0TWOl6Wxq/telemetry' // --header "Content-Type:application/json'
+    
+  var url = 'http://xx.xx.xxx.xxx:xxxxx/api/v1/xxxxxxxxxxxxxxxxxxxx/telemetry' // --header "Content-Type:application/json'
   var data = {"smhiTemperature":temperature};
-  
   
   fetch(url, {
       method: 'POST',
