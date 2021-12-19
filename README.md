@@ -92,7 +92,7 @@ I started collecting data from the DHT22 and ESP32 at 1500 @19/12/21 and after a
 
 # Future Plans and distant locations:
 
-I’ve looked through the incredible list of locations that SMHI provide on their website at [https://opendata.smhi.se/apidocs/metobs/demo.html](https://opendata.smhi.se/apidocs/metobs/demo.html).  This includes some remote islands like Utklippan about 44 km south, south east off the coast of Karlskrona. It would be interesting to compare SMHI data from other locations around Sweden’s coast line.
+I’ve looked through the incredible list of locations that SMHI provide on their website at [https://opendata.smhi.se/apidocs/metobs/demo.html](https://opendata.smhi.se/apidocs/metobs/demo.html).  This includes some remote islands like Utklippan about 44 km south (23 nm), south east off the coast of Karlskrona. It would be interesting to compare SMHI data from other locations around Sweden’s coast line.
 
 ![Untitled](My%20home%20temperature%20versus%20SMHI%20temperature%20data%2086b1c75de6e649a1812b5489f2fe22fd/Untitled%205.png)
 
