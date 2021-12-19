@@ -45,14 +45,10 @@ class App extends Component {
     .then(data => {
       console.log(data);
       const currentWeather = data.timeSeries[0].parameters;
-      console.log("this temp");
-      console.log(currentWeather[4].values[0]);
-      console.log("previous temp:");
-      console.log(previousTemp);
       if (currentWeather[10].values[0] !== previousTemp) {
         console.log("calling sendDataToThingsBoard !");
         sendDataToThingsBoard(currentWeather[10].values[0]);
-    }
+      }
       this.setState({
         temp: currentWeather[10].values[0],
         windspeed: currentWeather[4].values[0],
